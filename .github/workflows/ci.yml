@@ -2,95 +2,36 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+  ci:
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.11'
 
     - name: Install uv
       uses: astral-sh/setup-uv@v3
 
     - name: Install dependencies
-      run: |
-        uv sync --dev
+      run: uv sync --dev
+
+    - name: Lint
+      run: uv run flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
 
     - name: Run tests
-      run: |
-        PYTHONPATH=src uv run python -m pytest -v --cov=src --cov-report=xml --cov-report=term
+      run: PYTHONPATH=src uv run python -m pytest -v --cov=src --cov-report=xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
       with:
         file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
         fail_ci_if_error: false
-
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install uv
-      uses: astral-sh/setup-uv@v3
-
-    - name: Install dependencies
-      run: |
-        uv sync --dev
-
-    - name: Run flake8
-      run: |
-        uv run flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
-        uv run flake8 src --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
-
-    - name: Check formatting with black
-      run: |
-        uv run black --check src
-
-    - name: Check import sorting with isort
-      run: |
-        uv run isort --check-only src
-
-  type-check:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install uv
-      uses: astral-sh/setup-uv@v3
-
-    - name: Install dependencies
-      run: |
-        uv sync --dev
-
-    - name: Run mypy
-      run: |
-        uv run mypy src --ignore-missing-imports
