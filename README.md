@@ -7,8 +7,6 @@
 
 > **Transform your BlockNote.js blocks like magic!** ✨ Convert between dictionaries, markdown, and BlockNote blocks with full type safety and validation.
 
-Built with ❤️ using [Gemini CLI](https://codeium.com/windsurf) (Cascade)
-
 ## ✨ Why blocknote-py?
 
 Ever wanted to work with BlockNote.js blocks in Python? Now you can! 🎉
