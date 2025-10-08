@@ -1,5 +1,5 @@
 # blocknote-py 🐍✨
-
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-☕-yellow.svg)](https://buymeacoffee.com/sitoularohansharma)
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI version](https://badge.fury.io/py/blocknote-py.svg)](https://pypi.org/project/blocknote-py/)
@@ -276,5 +276,3 @@ MIT License - go wild! See [LICENSE](LICENSE) for details.
 Made with ❤️ and ☕ by [Rohan Sharma](https://github.com/rohansharmasitoula)
 
 **Star this repo if you find it useful!** ⭐
-
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-☕-yellow.svg)](https://buymeacoffee.com/sitoularohansharma)
