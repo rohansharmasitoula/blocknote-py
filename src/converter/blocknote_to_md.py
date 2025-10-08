@@ -74,7 +74,7 @@ def _convert_block_to_markdown(block: Block) -> str:
                 child_lines.append(f"* {child_content}")
         return "\n".join(child_lines)
 
-    elif block_type == 'orderedListItem':
+    elif block_type == 'numberedListItem':
         if not block.children:
             return f"1. {content}"
         # Convert children to numbered list items
