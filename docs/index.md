@@ -1,10 +1,26 @@
-# BlockNote-py
+---
+title: BlockNote-py - Python Library for BlockNote.js
+description: BlockNote Python library for converting BlockNote blocks to HTML, Markdown, and JSON. Complete Python support for BlockNote.js with type safety and validation.
+keywords: blocknote python, blocknote py, block note python, blocknote.js python, python blocknote library, blocknote converter python, html to blocknote python, markdown to blocknote python
+---
+
+# BlockNote-py - Python Library for BlockNote.js
 
 [![PyPI version](https://badge.fury.io/py/blocknote-py.svg)](https://badge.fury.io/py/blocknote-py)
 [![Python Support](https://img.shields.io/pypi/pyversions/blocknote-py.svg)](https://pypi.org/project/blocknote-py/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**BlockNote-py** is a Python library that provides seamless integration with [BlockNote.js](https://www.blocknotejs.org/), allowing you to convert between BlockNote blocks and various formats including HTML, Markdown, and Python dictionaries.
+**BlockNote-py** is the official Python library for [BlockNote.js](https://www.blocknotejs.org/), providing seamless integration and conversion between BlockNote blocks and various formats including HTML, Markdown, and Python dictionaries. Whether you're building a Python backend for a BlockNote editor or need to process BlockNote content server-side, BlockNote-py makes it simple and type-safe.
+
+## Why BlockNote-py?
+
+BlockNote-py bridges the gap between JavaScript's BlockNote.js and Python applications, enabling you to:
+
+- **Process BlockNote content in Python** - Handle BlockNote blocks server-side
+- **Convert between formats** - Transform BlockNote to HTML, Markdown, or JSON
+- **Type-safe operations** - Built with Pydantic for robust validation
+- **Server-side rendering** - Generate HTML from BlockNote blocks for SEO
+- **Content migration** - Import/export content between different formats
 
 ## ✨ Features
 

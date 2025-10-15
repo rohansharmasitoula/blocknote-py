@@ -1,4 +1,4 @@
-# BlockNote-py 🐍✨
+# BlockNote-py 🐍✨ - Python Library for BlockNote.js
 
 [![PyPI version](https://badge.fury.io/py/blocknote-py.svg)](https://pypi.org/project/blocknote-py/)
 [![Python Support](https://img.shields.io/pypi/pyversions/blocknote-py.svg)](https://pypi.org/project/blocknote-py/)
@@ -6,7 +6,7 @@
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://rohansharmasitoula.github.io/blocknote-py/)
 [![CI](https://github.com/rohansharmasitoula/blocknote-py/workflows/CI/badge.svg)](https://github.com/rohansharmasitoula/blocknote-py/actions)
 
-> **Python support for BlockNote.js** - Convert between BlockNote blocks and various formats with full type safety and validation.
+> **BlockNote Python Library** - Official Python support for BlockNote.js. Convert BlockNote blocks to HTML, Markdown, and JSON with full type safety and validation. Perfect for Python backends, server-side rendering, and content processing.
 
 ## ✨ Features
 

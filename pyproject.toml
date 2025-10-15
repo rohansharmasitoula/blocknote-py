@@ -1,7 +1,7 @@
 [project]
 name = "blocknote-py"
 version = "0.2.0"
-description = "Python support for BlockNote.js - Convert between BlockNote blocks and various formats (HTML, Markdown, Dictionary) with full type safety"
+description = "BlockNote Python library - Official Python support for BlockNote.js. Convert BlockNote blocks to HTML, Markdown, and JSON with full type safety and validation."
 authors = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
 maintainers = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
 readme = "README.md"
@@ -9,12 +9,16 @@ requires-python = ">=3.8"
 license = { file = "LICENSE" }
 keywords = [
     "blocknote",
+    "blocknote-py",
+    "blocknote-python",
+    "block-note-python",
+    "python-blocknote",
     "blocks",
     "html",
     "markdown",
+    "json",
     "converter",
     "rich-text",
-    "editor",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",

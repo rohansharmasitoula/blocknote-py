@@ -1,3 +1,9 @@
+---
+title: Install BlockNote-py - Python Library for BlockNote.js
+description: Complete installation guide for BlockNote-py. Learn how to install the BlockNote Python library using pip, from source, or for development.
+keywords: install blocknote python, blocknote py installation, pip install blocknote-py, python blocknote setup
+---
+
 # Installation
 
 ## Requirements

@@ -1,7 +1,8 @@
-site_name: BlockNote-py Documentation
-site_description: Python support for BlockNote.js - Convert between BlockNote blocks and various formats
+site_name: BlockNote-py - Python Library for BlockNote.js
+site_description: BlockNote Python library - Convert BlockNote blocks to HTML, Markdown, and JSON. Python support for BlockNote.js with full type safety and validation. BlockNote py, blocknote python, block note python library.
 site_author: Rohan Sharma Sitoula
 site_url: https://rohansharmasitoula.github.io/blocknote-py/
+copyright: Copyright &copy; 2024 Rohan Sharma Sitoula
 
 repo_name: rohansharmasitoula/blocknote-py
 repo_url: https://github.com/rohansharmasitoula/blocknote-py
@@ -46,7 +47,9 @@ markdown_extensions:
       permalink: true
 
 plugins:
-  - search
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - mkdocstrings:
       handlers:
         python:
@@ -56,6 +59,7 @@ plugins:
 
 nav:
   - Home: index.md
+  - Python Library Guide: blocknote-python-library.md
   - Getting Started:
     - Installation: getting-started/installation.md
     - Quick Start: getting-started/quick-start.md
@@ -83,3 +87,20 @@ extra:
       link: https://github.com/rohansharmasitoula/blocknote-py
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/blocknote-py/
+  tags:
+    BlockNote: blocknote
+    Python: python
+    HTML: html
+    Markdown: markdown
+    JSON: json
+    Converter: converter
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
