@@ -27,11 +27,40 @@ jobs:
     - name: Lint
       run: uv run flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
 
-    - name: Run tests
-      run: PYTHONPATH=src uv run python -m pytest -v --cov=src --cov-report=xml
+    - name: Run tests with coverage
+      run: PYTHONPATH=src uv run python -m pytest -v --cov=src --cov-report=term-missing --cov-report=json
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        file: ./coverage.xml
-        fail_ci_if_error: false
+    - name: Generate coverage badge
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        # Extract coverage percentage
+        COVERAGE=$(python -c "import json; print(int(float(json.load(open('coverage.json'))['totals']['percent_covered'])))")
+        echo "Coverage: ${COVERAGE}%"
+        
+        # Determine badge color
+        if [ $COVERAGE -ge 90 ]; then
+          COLOR="brightgreen"
+        elif [ $COVERAGE -ge 80 ]; then
+          COLOR="green"
+        elif [ $COVERAGE -ge 70 ]; then
+          COLOR="yellow"
+        elif [ $COVERAGE -ge 60 ]; then
+          COLOR="orange"
+        else
+          COLOR="red"
+        fi
+        
+        # Create coverage badge
+        curl -s "https://img.shields.io/badge/coverage-${COVERAGE}%25-${COLOR}" > coverage-badge.svg
+        
+        # Create a simple JSON file with coverage info
+        echo "{\"coverage\": \"${COVERAGE}%\", \"color\": \"${COLOR}\"}" > coverage.json
+
+    - name: Commit coverage badge
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add coverage-badge.svg coverage.json
+        git diff --staged --quiet || git commit -m "Update coverage badge [skip ci]"
+        git push

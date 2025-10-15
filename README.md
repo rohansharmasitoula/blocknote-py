@@ -1,223 +1,57 @@
-# blocknote-py 🐍✨
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-☕-yellow.svg)](https://buymeacoffee.com/sitoularohansharma)
-[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# BlockNote-py 🐍✨
+
 [![PyPI version](https://badge.fury.io/py/blocknote-py.svg)](https://pypi.org/project/blocknote-py/)
+[![Python Support](https://img.shields.io/pypi/pyversions/blocknote-py.svg)](https://pypi.org/project/blocknote-py/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://rohansharmasitoula.github.io/blocknote-py/)
 [![CI](https://github.com/rohansharmasitoula/blocknote-py/workflows/CI/badge.svg)](https://github.com/rohansharmasitoula/blocknote-py/actions)
+[![Coverage](https://raw.githubusercontent.com/rohansharmasitoula/blocknote-py/main/coverage-badge.svg)](https://github.com/rohansharmasitoula/blocknote-py)
 
-> **Transform your BlockNote.js blocks like magic!** ✨ Convert between dictionaries, markdown, and BlockNote blocks with full type safety and validation.
+> **Python support for BlockNote.js** - Convert between BlockNote blocks and various formats with full type safety and validation.
 
-## ✨ Why blocknote-py?
+## ✨ Features
 
-Ever wanted to work with BlockNote.js blocks in Python? Now you can! 🎉
-
-- 🔄 **Bidirectional Magic**: Dict ↔ Blocks ↔ Markdown (it just works!)
-- 🛡️ **Type-Safe**: Pydantic models keep your data squeaky clean
-- 🎨 **Style Support**: Bold, italic, and more formatting options
-- 📝 **Lists Galore**: Bullets, numbers, checks - we got 'em all
-- 🧪 **Battle-Tested**: 43 tests and counting
-- 🚀 **Fast & Easy**: Simple API, powerful results
+- 🔄 **Multiple Format Support**: HTML, Markdown, and Dictionary conversion
+- 🌐 **HTML Conversion**: Full bidirectional HTML support with styling preservation
+- 📝 **Markdown Support**: Convert to/from Markdown with formatting
+- 🛡️ **Type Safety**: Built with Pydantic for robust data validation
+- 🎨 **Rich Formatting**: Bold, italic, colors, lists, quotes, and more
+- 🧪 **Well Tested**: Comprehensive test suite with 70+ tests
+- 📚 **Great Documentation**: Detailed docs with examples
 
 ## 📦 Installation
 
 ```bash
-# With uv (recommended)
-uv add blocknote-py
-
-# Or with pip
 pip install blocknote-py
 ```
 
-That's it! You're ready to roll! 🎸
+## 📚 Documentation
 
-## 🚀 Quick Start
+**Complete documentation:** https://rohansharmasitoula.github.io/blocknote-py/
 
-### The Magic in Action
+### Quick Navigation
 
-```python
-from blocknote.converter import dict_to_blocks, markdown_to_blocks, blocks_to_markdown, blocks_to_dict
-from blocknote.schema import Block, InlineContent
-
-# Convert dictionaries to blocks
-data = [
-    {
-        "id": "1",
-        "type": "paragraph",
-        "content": [
-            {"type": "text", "text": "Hello, "},
-            {"type": "text", "text": "world!", "styles": {"bold": True}},
-        ],
-    }
-]
-
-blocks = dict_to_blocks(data)
-print(blocks[0].content[0].text)  # "Hello, "
-
-# Parse markdown with basic formatting
-markdown = """# Hello World
-
-This is **bold** and *italic* text.
-
-- Bullet item 1
-- Bullet item 2
-
-1. Numbered item 1
-2. Numbered item 2
-"""
-
-blocks = markdown_to_blocks(markdown)
-print(f"Parsed {len(blocks)} blocks")
-
-# Convert blocks back to markdown
-back_to_md = blocks_to_markdown(blocks)
-print("Round-trip conversion successful!")
-```
-
-### Working with Block Objects
-
-```python
-from blocknote.schema import Block, InlineContent
-
-# Create blocks programmatically
-block = Block(
-    id="unique-id",
-    type="paragraph",
-    content=[
-        InlineContent(type="text", text="Hello ", styles={}),
-        InlineContent(type="text", text="world", styles={"bold": True})
-    ],
-    props={},
-    children=[]
-)
-
-print(block.type)  # "paragraph"
-print(len(block.content))  # 2
-```
-
-## API Reference
-
-### Core Classes
-
-#### `Block`
-Represents a Blocknote block with content and children.
-
-- `id: str` - Unique identifier
-- `type: BlockType` - Block type (paragraph, heading, bulletListItem, orderedListItem)
-- `props: Dict[str, Any]` - Block-specific properties
-- `content: Union[str, List[InlineContent]]` - Block content
-- `children: List[Block]` - Child blocks
-
-#### `InlineContent`
-Represents inline content within a block.
-
-- `type: InlineContentType` - Content type (currently only "text")
-- `text: str` - The text content
-- `styles: Dict[str, Any]` - Text styling (bold, italic, etc.)
-
-### Converter Functions
-
-#### `dict_to_blocks(data: List[Dict[str, Any]]) -> List[Block]`
-Converts a list of dictionaries to validated Block objects.
-
-```python
-from blocknote.converter import dict_to_blocks
-
-data = [{"id": "1", "type": "paragraph", "content": "Hello"}]
-blocks = dict_to_blocks(data)
-```
-
-#### `blocks_to_dict(blocks: List[Block]) -> List[Dict[str, Any]]`
-Converts a list of Block objects to dictionaries.
-
-```python
-from blocknote.converter import blocks_to_dict
-
-dict_data = blocks_to_dict(blocks)
-```
-
-#### `markdown_to_blocks(markdown: str) -> List[Block]`
-Converts a markdown string to a list of Block objects.
-
-```python
-from blocknote.converter import markdown_to_blocks
-
-blocks = markdown_to_blocks("# Hello\n\nWorld")
-```
-
-#### `blocks_to_markdown(blocks: List[Block]) -> str`
-Converts a list of Block objects to a markdown string.
-
-```python
-from blocknote.converter import blocks_to_markdown
-
-markdown = blocks_to_markdown(blocks)
-```
-
-## Supported Block Types
-
-- **Paragraph**: Basic text paragraphs with styling support
-- **Heading**: Headings with levels (H1, H2, H3)
-- **Bullet Lists**: Unordered lists with list items
-- **Numbered Lists**: Ordered lists with list items
-- **Check Lists**: Checklist items with checked/unchecked state
-- **Toggle Lists**: Collapsible list items
-- **Quotes**: Blockquote text blocks
-- **Tables**: Table structures (basic support)
-
-## Supported Text Formatting
-
-- **Bold text**: `**bold**` or `__bold__`
-- **Italic text**: `*italic*` or `_italic_`
-- **Plain text**: Regular text content
-
-## Development
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/blocknote-py.git
-cd blocknote-py
-
-# Install dependencies (including development tools)
-uv sync --dev
-
-# Setup pre-commit hooks (optional)
-uv run pre-commit install
-```
-
-### Code Quality
-
-This project uses several tools to maintain code quality:
-
-- **[Black](https://black.readthedocs.io/)**: Code formatting
-- **[isort](https://pycqa.github.io/isort/)**: Import sorting
-- **[flake8](https://flake8.pycqa.org/)**: Linting
-- **[mypy](https://mypy.readthedocs.io/)**: Type checking
-
+| Section | Description |
+|---------|-------------|
+| [🚀 Quick Start](https://rohansharmasitoula.github.io/blocknote-py/getting-started/quick-start/) | Get up and running in minutes |
+| [🔧 API Reference](https://rohansharmasitoula.github.io/blocknote-py/api/schema/) | Complete API documentation |
+| [🔄 Converters](https://rohansharmasitoula.github.io/blocknote-py/converters/overview/) | Detailed converter documentation |
+| [💡 Examples](https://rohansharmasitoula.github.io/blocknote-py/examples/basic/) | Real-world usage examples |
+| [🤝 Contributing](https://rohansharmasitoula.github.io/blocknote-py/contributing/) | How to contribute |
 
 ## 🤝 Contributing
 
-We love contributions! Got an idea? Found a bug? Let's make this better together! 
-
-1. 🍴 Fork it
-2. 🌿 Create your feature branch (`git checkout -b feature/awesome-feature`)
-3. ✨ Commit your changes (`git commit -m 'Add awesome feature'`)
-4. 🚀 Push to the branch (`git push origin feature/awesome-feature`)
-5. 🎉 Open a Pull Request
-
-Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more details!
+Contributions are welcome! Please see our [Contributing Guide](https://rohansharmasitoula.github.io/blocknote-py/contributing/) for details.
 
 ## 📄 License
 
-MIT License - go wild! See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Related Projects
+## 🙏 Acknowledgments
 
-- [BlockNote.js](https://github.com/TypeCellOS/BlockNote) - The awesome JavaScript library that started it all
+- [BlockNote.js](https://www.blocknotejs.org/) - The amazing block-based editor
+- [Pydantic](https://pydantic-docs.helpmanual.io/) - For robust data validation
 
 ---
 
-Made with ❤️ and ☕ by [Rohan Sharma](https://github.com/rohansharmasitoula)
-
-**Star this repo if you find it useful!** ⭐
+**[⭐ Star this repo](https://github.com/rohansharmasitoula/blocknote-py)** if you find it useful!

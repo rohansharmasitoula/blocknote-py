@@ -1,5 +1,4 @@
 import pytest
-
 from blocknote.converter.blocknote_to_dict import blocks_to_dict
 from blocknote.schema import Block, InlineContent
 
@@ -169,7 +168,4 @@ def test_blocks_to_dict_roundtrip():
     assert len(result_dict[0]["content"]) == len(original_dict[0]["content"])
     assert result_dict[0]["content"][0]["text"] == original_dict[0]["content"][0]["text"]
     assert result_dict[0]["content"][1]["text"] == original_dict[0]["content"][1]["text"]
-    assert (
-        result_dict[0]["content"][1]["styles"]
-        == original_dict[0]["content"][1]["styles"]
-    )
+    assert result_dict[0]["content"][1]["styles"] == original_dict[0]["content"][1]["styles"]

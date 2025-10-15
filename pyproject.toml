@@ -1,31 +1,71 @@
 [project]
 name = "blocknote-py"
-version = "0.1.0"
-description = "Python support for Blocknote.js"
+version = "0.2.0"
+description = "Python support for BlockNote.js - Convert between BlockNote blocks and various formats (HTML, Markdown, Dictionary) with full type safety"
 authors = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
+maintainers = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.8"
 license = { file = "LICENSE" }
+keywords = [
+    "blocknote",
+    "blocks",
+    "html",
+    "markdown",
+    "converter",
+    "rich-text",
+    "editor",
+]
 classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Typing :: Typed",
 ]
 dependencies = [
-    "pydantic",
-    "markdown-it-py",
+    "pydantic>=2.0.0",
+    "markdown-it-py>=3.0.0",
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/rohansharmasitoula/blocknote-py"
+"Documentation" = "https://rohansharmasitoula.github.io/blocknote-py/"
+"Repository" = "https://github.com/rohansharmasitoula/blocknote-py"
+"Bug Tracker" = "https://github.com/rohansharmasitoula/blocknote-py/issues"
+"Changelog" = "https://rohansharmasitoula.github.io/blocknote-py/changelog/"
+"Funding" = "https://buymeacoffee.com/sitoularohansharma"
 
 [project.optional-dependencies]
 test = [
-    "pytest",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
 ]
 dev = [
-    "black",
-    "isort",
-    "flake8",
-    "mypy",
-    "pre-commit",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "mkdocstrings[python]>=0.20.0",
+]
+all = [
+    "blocknote-py[test,dev,docs]",
 ]
 
 [build-system]
