@@ -30,43 +30,7 @@ jobs:
     - name: Lint
       run: uv run flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
 
-    - name: Run tests with coverage
-      run: PYTHONPATH=src uv run python -m pytest -v --cov=src --cov-report=term-missing --cov-report=json
-
-    - name: Generate coverage badge
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    - name: Run tests
       run: |
-        # Extract coverage percentage
-        COVERAGE=$(python -c "import json; print(int(float(json.load(open('coverage.json'))['totals']['percent_covered'])))")
-        echo "Coverage: ${COVERAGE}%"
-        
-        # Determine badge color
-        if [ $COVERAGE -ge 90 ]; then
-          COLOR="brightgreen"
-        elif [ $COVERAGE -ge 80 ]; then
-          COLOR="green"
-        elif [ $COVERAGE -ge 70 ]; then
-          COLOR="yellow"
-        elif [ $COVERAGE -ge 60 ]; then
-          COLOR="orange"
-        else
-          COLOR="red"
-        fi
-        
-        # Create coverage badge
-        curl -s "https://img.shields.io/badge/coverage-${COVERAGE}%25-${COLOR}" > coverage-badge.svg
-        
-        # Create a simple JSON file with coverage info
-        echo "{\"coverage\": \"${COVERAGE}%\", \"color\": \"${COLOR}\"}" > coverage.json
+        PYTHONPATH=src uv run python -m pytest -v
 
-    - name: Update coverage badge
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: |
-        # Store coverage info in GitHub environment for the docs workflow
-        echo "COVERAGE_PERCENTAGE=${COVERAGE}" >> $GITHUB_ENV
-        echo "COVERAGE_COLOR=${COLOR}" >> $GITHUB_ENV
-        
-        # Create a coverage report summary
-        echo "## Coverage Report" >> $GITHUB_STEP_SUMMARY
-        echo "Coverage: ${COVERAGE}%" >> $GITHUB_STEP_SUMMARY
-        echo "Badge Color: ${COLOR}" >> $GITHUB_STEP_SUMMARY
