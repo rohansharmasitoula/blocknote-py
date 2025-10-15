@@ -59,13 +59,14 @@ jobs:
         # Create a simple JSON file with coverage info
         echo "{\"coverage\": \"${COVERAGE}%\", \"color\": \"${COLOR}\"}" > coverage.json
 
-    - name: Commit coverage badge
+    - name: Update coverage badge
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add coverage-badge.svg
-        if ! git diff --staged --quiet; then
-          git commit -m "Update coverage badge [skip ci]"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
-        fi
+        # Store coverage info in GitHub environment for the docs workflow
+        echo "COVERAGE_PERCENTAGE=${COVERAGE}" >> $GITHUB_ENV
+        echo "COVERAGE_COLOR=${COLOR}" >> $GITHUB_ENV
+        
+        # Create a coverage report summary
+        echo "## Coverage Report" >> $GITHUB_STEP_SUMMARY
+        echo "Coverage: ${COVERAGE}%" >> $GITHUB_STEP_SUMMARY
+        echo "Badge Color: ${COLOR}" >> $GITHUB_STEP_SUMMARY

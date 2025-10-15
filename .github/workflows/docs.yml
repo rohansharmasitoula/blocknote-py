@@ -42,7 +42,46 @@ jobs:
           uv sync --dev
           uv pip install mkdocs-material mkdocstrings[python]
 
-      - name: Build documentation
+      - name: Generate coverage badge
+        run: |
+          # Get latest coverage from CI artifacts or calculate from current code
+          COVERAGE=$(uv run python -c "
+          import subprocess
+          import re
+          try:
+              result = subprocess.run(['uv', 'run', 'python', '-m', 'pytest', '--cov=src', '--cov-report=term-missing'], 
+                                    capture_output=True, text=True, cwd='.')
+              coverage_line = [line for line in result.stdout.split('\n') if 'TOTAL' in line]
+              if coverage_line:
+                  match = re.search(r'(\d+)%', coverage_line[0])
+                  if match:
+                      print(match.group(1))
+                  else:
+                      print('0')
+              else:
+                  print('0')
+          except:
+              print('0')
+          ")
+          
+          # Determine badge color
+          if [ "$COVERAGE" -ge 90 ]; then
+            COLOR="brightgreen"
+          elif [ "$COVERAGE" -ge 80 ]; then
+            COLOR="green"
+          elif [ "$COVERAGE" -ge 70 ]; then
+            COLOR="yellow"
+          elif [ "$COVERAGE" -ge 60 ]; then
+            COLOR="orange"
+          else
+            COLOR="red"
+          fi
+          
+          # Create coverage badge and save to docs
+          mkdir -p site/assets
+          curl -s "https://img.shields.io/badge/coverage-${COVERAGE}%25-${COLOR}" > site/assets/coverage-badge.svg
+
+      - name: Build with MkDocs
         run: |
           uv run mkdocs build --clean --strict
 

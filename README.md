@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://rohansharmasitoula.github.io/blocknote-py/)
 [![CI](https://github.com/rohansharmasitoula/blocknote-py/workflows/CI/badge.svg)](https://github.com/rohansharmasitoula/blocknote-py/actions)
-[![Coverage](https://raw.githubusercontent.com/rohansharmasitoula/blocknote-py/main/coverage-badge.svg)](https://github.com/rohansharmasitoula/blocknote-py)
+[![Coverage](https://rohansharmasitoula.github.io/blocknote-py/assets/coverage-badge.svg)](https://rohansharmasitoula.github.io/blocknote-py/)
 
 > **Python support for BlockNote.js** - Convert between BlockNote blocks and various formats with full type safety and validation.
 
