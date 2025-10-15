@@ -265,6 +265,19 @@ def article_view(request, slug):
 - 💬 [Discussions](https://github.com/rohansharmasitoula/blocknote-py/discussions)
 - 📦 [PyPI Package](https://pypi.org/project/blocknote-py/)
 
+### ☕ Support Development
+
+If BlockNote-py has helped your project, consider supporting its continued development:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20development-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/sitoularohansharma)
+
+Your support enables:
+- 🚀 **New features** - Adding more conversion formats and capabilities
+- 🐛 **Bug fixes** - Maintaining high quality and reliability
+- 📚 **Documentation** - Keeping guides and examples up-to-date
+- 🧪 **Testing** - Ensuring compatibility across Python versions
+- 💬 **Community support** - Helping users and answering questions
+
 ### Contributing
 We welcome contributions! See our [Contributing Guide](contributing.md) for details on:
 - Setting up development environment

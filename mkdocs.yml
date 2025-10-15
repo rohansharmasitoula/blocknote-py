@@ -87,6 +87,9 @@ extra:
       link: https://github.com/rohansharmasitoula/blocknote-py
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/blocknote-py/
+    - icon: fontawesome/solid/coffee
+      link: https://buymeacoffee.com/sitoularohansharma
+      name: Buy me a coffee
   tags:
     BlockNote: blocknote
     Python: python

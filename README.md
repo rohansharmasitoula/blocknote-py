@@ -46,6 +46,14 @@ Contributions are welcome! Please see our [Contributing Guide](https://rohanshar
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## ☕ Support the Project
+
+If you find BlockNote-py useful, consider supporting its development:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support%20development-orange?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/sitoularohansharma)
+
+Your support helps maintain and improve BlockNote-py for the entire Python community! 🙏
+
 ## 🙏 Acknowledgments
 
 - [BlockNote.js](https://www.blocknotejs.org/) - The amazing block-based editor
