@@ -59,7 +59,12 @@ def test_dict_to_blocks_multiple_blocks():
     """Test conversion of multiple blocks."""
     data = [
         {"id": "1", "type": "paragraph", "content": "First paragraph"},
-        {"id": "2", "type": "heading", "props": {"level": 1}, "content": "Heading"},
+        {
+            "id": "2",
+            "type": "heading",
+            "props": {"level": 1},
+            "content": "Heading",
+        },
     ]
     blocks = dict_to_blocks(data)
     assert len(blocks) == 2
@@ -74,7 +79,10 @@ def test_dict_to_blocks_multiple_blocks():
         ([{"type": "paragraph"}], "Block dict must contain 'id'"),
         ([{"id": "1"}], "Block dict must contain 'type'"),
         ([{"id": "1", "type": "invalid"}], "Invalid block type"),
-        ([{"id": "1", "type": "paragraph", "content": 123}], "Invalid content type"),
+        (
+            [{"id": "1", "type": "paragraph", "content": 123}],
+            "Invalid content type",
+        ),
     ],
 )
 def test_dict_to_blocks_validation_errors(invalid_data, expected_error):

@@ -1,12 +1,13 @@
 """
 Blocknote schema types and models.
 
-This module defines the core Pydantic models for Blocknote blocks and inline content.
-All models include validation and type safety for working with Blocknote data structures.
+This module defines the core Pydantic models for Blocknote blocks and
+inline content. All models include validation and type safety for
+working with Blocknote data structures.
 """
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Union
 
 from pydantic import BaseModel, Field, validator
 
@@ -43,18 +44,23 @@ class InlineContent(BaseModel):
     """
     Represents inline content within a block.
 
-    Inline content is the text and styling information that makes up the content
-    of a block. Currently only supports text content with optional styling.
+    Inline content is the text and styling information that makes up the
+    content of a block. Currently only supports text content with optional
+    styling.
 
     Attributes:
         type: The type of inline content (currently only "text")
         text: The actual text content
-        styles: Dictionary of styling properties (e.g., {"bold": True, "italic": True})
+        styles: Dictionary of styling properties (e.g., {"bold": True})
     """
 
-    type: InlineContentType = Field(..., description="The type of inline content")
+    type: InlineContentType = Field(
+        ..., description="The type of inline content"
+    )
     text: str = Field(..., description="The text content")
-    styles: Dict[str, Any] = Field(default_factory=dict, description="Styling properties")
+    styles: Dict[str, Any] = Field(
+        default_factory=dict, description="Styling properties"
+    )
 
     class Config:
         use_enum_values = True
@@ -71,7 +77,7 @@ class Block(BaseModel):
     Attributes:
         id: Unique identifier for the block
         type: The type of block (paragraph, heading, list items, etc.)
-        props: Block-specific properties including default styling properties
+        props: Block-specific properties including default styling
         content: The content of the block (text or list of InlineContent)
         children: List of child blocks
     """
@@ -79,12 +85,15 @@ class Block(BaseModel):
     id: str = Field(..., description="Unique identifier for the block")
     type: BlockType = Field(..., description="The type of block")
     props: Dict[str, Any] = Field(
-        default_factory=dict, description="Block-specific and styling properties"
+        default_factory=dict,
+        description="Block-specific and styling properties",
     )
     content: Union[str, List[InlineContent]] = Field(
         default_factory=list, description="The content of the block"
     )
-    children: List["Block"] = Field(default_factory=list, description="Child blocks")
+    children: List["Block"] = Field(
+        default_factory=list, description="Child blocks"
+    )
 
     @validator("content")
     def validate_content(cls, v, values):
@@ -101,15 +110,18 @@ class Block(BaseModel):
                 BlockType.QUOTE,
             ]
             if block_type in text_block_types:
-                # Allow string content - it will be converted to list of InlineContent
                 if isinstance(v, str):
-                    return [InlineContent(type=InlineContentType.TEXT, text=v)]
+                    return [
+                        InlineContent(type=InlineContentType.TEXT, text=v)
+                    ]
                 elif not isinstance(v, list):
-                    raise ValueError(
-                        f"Content for {block_type} must be a string or list of InlineContent"
+                    message = (
+                        f"Content for {block_type} must be a string or "
+                        "list of InlineContent"
                     )
+                    raise ValueError(message)
             elif block_type == BlockType.TABLE:
-                # Tables can have complex structure - allow flexible content for now
+                # Table content is returned as provided
                 pass
         return v
 

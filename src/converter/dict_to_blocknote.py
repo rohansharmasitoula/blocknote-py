@@ -24,13 +24,18 @@ def dict_to_blocks(data: List[Dict[str, Any]]) -> List[Block]:
     for i, item in enumerate(data):
         try:
             if not isinstance(item, dict):
-                raise TypeError(f"Item at index {i} must be a dictionary, got {type(item)}")
+                raise TypeError(
+                    f"Item at index {i} must be a dictionary, got {type(item)}"
+                )
 
             block_dict = _normalize_block_dict(item)
             block = Block(**block_dict)
             blocks.append(block)
         except Exception as e:
-            raise ValueError(f"Failed to convert dict at index {i} to Block: {e}. Dict: {item}")
+            raise ValueError(
+                f"Failed to convert dict at index {i} to Block: {e}. "
+                f"Dict: {item}"
+            )
     return blocks
 
 
@@ -70,7 +75,9 @@ def _normalize_block_dict(block_dict: Dict[str, Any]) -> Dict[str, Any]:
             "quote",
         ]:
             if isinstance(content, str):
-                normalized["content"] = [InlineContent(type=InlineContentType.TEXT, text=content)]
+                normalized["content"] = [
+                    InlineContent(type=InlineContentType.TEXT, text=content)
+                ]
             elif isinstance(content, list):
                 normalized_content = []
                 for item in content:
@@ -82,7 +89,9 @@ def _normalize_block_dict(block_dict: Dict[str, Any]) -> Dict[str, Any]:
                         raise ValueError(f"Invalid content item: {item}")
                 normalized["content"] = normalized_content
             else:
-                raise ValueError(f"Invalid content type for {block_type}: {type(content)}")
+                raise ValueError(
+                    f"Invalid content type for {block_type}: {type(content)}"
+                )
         elif block_type == "table":
             normalized["content"] = content
 

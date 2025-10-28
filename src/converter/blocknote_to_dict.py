@@ -22,7 +22,9 @@ def blocks_to_dict(blocks: List[Block]) -> List[Dict[str, Any]]:
     result = []
     for i, block in enumerate(blocks):
         if not isinstance(block, Block):
-            raise TypeError(f"Item at index {i} must be a Block object, got {type(block)}")
+            raise TypeError(
+                f"Item at index {i} must be a Block object, got {type(block)}"
+            )
 
         result.append(_block_to_dict(block))
 
@@ -44,7 +46,11 @@ def _block_to_dict(block: Block) -> Dict[str, Any]:
         "type": block.type,
         "props": block.props if block.props else {},
         "content": _content_to_dict(block.content),
-        "children": [_block_to_dict(child) for child in block.children] if block.children else [],
+        "children": (
+            [_block_to_dict(child) for child in block.children]
+            if block.children
+            else []
+        ),
     }
 
     return block_dict
@@ -55,7 +61,8 @@ def _content_to_dict(content) -> List[Dict[str, Any]]:
     Convert block content to dictionary format.
 
     Args:
-        content: Either a string, list of InlineContent objects, or other content
+        content: Either a string, list of InlineContent objects,
+            or other content
 
     Returns:
         List of dictionaries representing the content
@@ -75,7 +82,9 @@ def _content_to_dict(content) -> List[Dict[str, Any]]:
             elif isinstance(item, dict):
                 result.append(item)
             else:
-                result.append({"type": "text", "text": str(item), "styles": {}})
+                result.append(
+                    {"type": "text", "text": str(item), "styles": {}}
+                )
         return result
     else:
         return content if content else []

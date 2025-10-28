@@ -1,6 +1,6 @@
 from typing import List
 
-from blocknote.schema import Block, InlineContent
+from blocknote.schema import Block
 
 
 def blocks_to_markdown(blocks: List[Block]) -> str:
@@ -16,10 +16,6 @@ def blocks_to_markdown(blocks: List[Block]) -> str:
     Raises:
         TypeError: If input is not a list or contains non-Block objects
 
-    Example:
-        >>> blocks = [Block(id="1", type="heading", props={"level": 1}, content=[InlineContent(type="text", text="Title")])]
-        >>> blocks_to_markdown(blocks)
-        '# Title'
     """
     if not isinstance(blocks, list):
         raise TypeError("Input must be a list of Block objects")
@@ -32,13 +28,18 @@ def blocks_to_markdown(blocks: List[Block]) -> str:
     for i, block in enumerate(blocks):
         try:
             if not isinstance(block, Block):
-                raise TypeError(f"Item at index {i} must be a Block object, got {type(block)}")
+                raise TypeError(
+                    f"Item at index {i} must be a Block object, "
+                    f"got {type(block)}"
+                )
 
             markdown_line = _convert_block_to_markdown(block)
             if markdown_line:  # Only add non-empty lines
                 markdown_lines.append(markdown_line)
         except Exception as e:
-            raise ValueError(f"Failed to convert block at index {i} to markdown: {e}")
+            raise ValueError(
+                f"Failed to convert block at index {i} to markdown: {e}"
+            )
 
     return "\n\n".join(markdown_lines)
 
@@ -88,7 +89,7 @@ def _convert_block_to_markdown(block: Block) -> str:
         return "\n".join(child_lines)
 
     else:
-        # For unsupported block types, return empty string or could raise warning
+        # Unsupported block types return empty string; consider warnings later
         return ""
 
 

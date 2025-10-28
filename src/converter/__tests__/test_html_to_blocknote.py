@@ -1,6 +1,5 @@
 import pytest
 from blocknote.converter.html_to_blocknote import html_to_blocks
-from blocknote.schema import Block, InlineContent
 
 
 def test_html_to_blocks_basic():
@@ -52,7 +51,10 @@ def test_html_to_blocks_headings():
 
 def test_html_to_blocks_lists():
     """Test conversion of HTML lists."""
-    html = "<ul><li>First item</li><li>Second item</li></ul><ol><li>First numbered</li><li>Second numbered</li></ol>"
+    html = (
+        "<ul><li>First item</li><li>Second item</li></ul>"
+        "<ol><li>First numbered</li><li>Second numbered</li></ol>"
+    )
     blocks = html_to_blocks(html)
 
     assert len(blocks) == 4
@@ -72,7 +74,10 @@ def test_html_to_blocks_lists():
 
 def test_html_to_blocks_styled_content():
     """Test conversion of HTML with styled content."""
-    html = "<p><strong>Bold text</strong> and <em>italic text</em></p>"
+    html = (
+        "<p><strong>Bold text</strong> and "
+        "<em>italic text</em></p>"
+    )
     blocks = html_to_blocks(html)
 
     assert len(blocks) == 1
@@ -80,18 +85,21 @@ def test_html_to_blocks_styled_content():
     assert len(blocks[0].content) == 3
 
     assert blocks[0].content[0].text == "Bold text"
-    assert blocks[0].content[0].styles.get("bold") == True
+    assert blocks[0].content[0].styles.get("bold") is True
 
     assert blocks[0].content[1].text == " and "
     assert not blocks[0].content[1].styles
 
     assert blocks[0].content[2].text == "italic text"
-    assert blocks[0].content[2].styles.get("italic") == True
+    assert blocks[0].content[2].styles.get("italic") is True
 
 
 def test_html_to_blocks_nested_styles():
     """Test conversion of nested HTML styles."""
-    html = "<p><strong><em>Bold and italic</em></strong></p>"
+    html = (
+        "<p><strong><em>Bold and italic"
+        "</em></strong></p>"
+    )
     blocks = html_to_blocks(html)
 
     assert len(blocks) == 1
@@ -100,13 +108,16 @@ def test_html_to_blocks_nested_styles():
 
     content = blocks[0].content[0]
     assert content.text == "Bold and italic"
-    assert content.styles.get("bold") == True
-    assert content.styles.get("italic") == True
+    assert content.styles.get("bold") is True
+    assert content.styles.get("italic") is True
 
 
 def test_html_to_blocks_span_with_styles():
     """Test conversion of span elements with CSS styles."""
-    html = '<p><span style="color: red; background-color: yellow;">Colored text</span></p>'
+    html = (
+        '<p><span style="color: red; background-color: yellow;">'
+        "Colored text</span></p>"
+    )
     blocks = html_to_blocks(html)
 
     assert len(blocks) == 1
@@ -131,17 +142,20 @@ def test_html_to_blocks_blockquote():
 
 def test_html_to_blocks_checkbox_div():
     """Test conversion of checkbox divs."""
-    html = '<div><input type="checkbox" checked> Completed task</div><div><input type="checkbox"> Incomplete task</div>'
+    html = (
+        '<div><input type="checkbox" checked> Completed task</div>'
+        '<div><input type="checkbox"> Incomplete task</div>'
+    )
     blocks = html_to_blocks(html)
 
     assert len(blocks) == 2
 
     assert blocks[0].type == "checkListItem"
-    assert blocks[0].props.get("checked") == True
+    assert blocks[0].props.get("checked") is True
     assert blocks[0].content[0].text == " Completed task"
 
     assert blocks[1].type == "checkListItem"
-    assert blocks[1].props.get("checked") == False
+    assert blocks[1].props.get("checked") is False
     assert blocks[1].content[0].text == " Incomplete task"
 
 
@@ -165,14 +179,14 @@ def test_html_to_blocks_underline_and_strikethrough():
     assert len(blocks[0].content) == 3
 
     assert blocks[0].content[0].text == "Underlined text"
-    assert blocks[0].content[0].styles.get("underline") == True
+    assert blocks[0].content[0].styles.get("underline") is True
 
     assert blocks[0].content[1].text == " and "
 
     assert blocks[0].content[2].text == "strikethrough text"
-    assert blocks[0].content[2].styles.get("strike") == True
+    assert blocks[0].content[2].styles.get("strike") is True
     assert blocks[0].content[2].text == "strikethrough text"
-    assert blocks[0].content[2].styles.get("strike") == True
+    assert blocks[0].content[2].styles.get("strike") is True
 
 
 def test_html_to_blocks_code():
@@ -185,7 +199,7 @@ def test_html_to_blocks_code():
     assert len(blocks[0].content) == 3
 
     assert blocks[0].content[1].text == "inline code"
-    assert blocks[0].content[1].styles.get("code") == True
+    assert blocks[0].content[1].styles.get("code") is True
 
 
 def test_html_to_blocks_mixed_content():

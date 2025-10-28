@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rohansharmasitoula.github.io/blocknote-py/sitemap.xml
+
+# Allow all search engines to crawl the documentation
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow crawling of build artifacts and temporary files
+Disallow: /site/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /build/
+Disallow: /dist/
+Disallow: /__pycache__/
+Disallow: /*.pyc
+Disallow: /.pytest_cache/
+Disallow: /.mypy_cache/
+Disallow: /.coverage
+Disallow: /htmlcov/
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1

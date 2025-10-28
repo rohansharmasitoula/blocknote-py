@@ -84,6 +84,32 @@ print(blocks[0].content[0].text)  # Hello, World!
 - [API Reference](api/schema.md) - Complete API documentation
 - [Examples](examples/basic.md) - Practical examples and use cases
 
+## ❓ Frequently Asked Questions
+
+### What is the BlockNote Python library?
+
+BlockNote-py is the Python companion to BlockNote.js. It ships Pydantic models
+and converter utilities so that any Python project can read and write
+BlockNote documents, making it ideal for FastAPI, Django, Flask, and other
+backend frameworks.
+
+### How do I install BlockNote-py with PDF export capability?
+
+Use the optional PDF extra when installing from PyPI:
+
+```bash
+pip install "blocknote-py[pdf]"
+```
+
+This installs WeasyPrint alongside the core BlockNote Python tooling so you can
+render BlockNote pages as PDFs on the server.
+
+### Does BlockNote-py support SEO-friendly HTML rendering?
+
+Yes. The `blocks_to_html` converter produces semantic HTML that you can serve
+directly to crawlers. Pair it with the provided styling to generate markup that
+search engines can index, helping BlockNote-driven sites rank for their content.
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](contributing.md) for details.

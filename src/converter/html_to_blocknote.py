@@ -61,9 +61,19 @@ class BlockNoteHTMLParser(HTMLParser):
                 "styles": {},
             }
         elif tag == "p":
-            self.current_block = {"type": "paragraph", "props": {}, "content": [], "styles": {}}
+            self.current_block = {
+                "type": "paragraph",
+                "props": {},
+                "content": [],
+                "styles": {},
+            }
         elif tag == "blockquote":
-            self.current_block = {"type": "quote", "props": {}, "content": [], "styles": {}}
+            self.current_block = {
+                "type": "quote",
+                "props": {},
+                "content": [],
+                "styles": {},
+            }
         elif tag == "ul":
             pass
         elif tag == "ol":
@@ -77,7 +87,12 @@ class BlockNoteHTMLParser(HTMLParser):
             else:
                 block_type = "bulletListItem"
 
-            self.current_block = {"type": block_type, "props": {}, "content": [], "styles": {}}
+            self.current_block = {
+                "type": block_type,
+                "props": {},
+                "content": [],
+                "styles": {},
+            }
         elif tag == "div":
             class_attr = self._get_attr_value(attrs, "class")
             if class_attr and class_attr.startswith("blocknote-"):
@@ -106,7 +121,12 @@ class BlockNoteHTMLParser(HTMLParser):
                         "styles": {},
                     }
             else:
-                self.current_block = {"type": "paragraph", "props": {}, "content": [], "styles": {}}
+                self.current_block = {
+                    "type": "paragraph",
+                    "props": {},
+                    "content": [],
+                    "styles": {},
+                }
         elif tag == "input":
             if self._get_attr_value(attrs, "type") == "checkbox":
                 checked = "checked" in [attr[0] for attr in attrs]
@@ -141,7 +161,18 @@ class BlockNoteHTMLParser(HTMLParser):
         if self.tag_stack:
             self.tag_stack.pop()
 
-        if tag in ["h1", "h2", "h3", "h4", "h5", "h6", "p", "blockquote", "li", "div"]:
+        if tag in [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "p",
+            "blockquote",
+            "li",
+            "div",
+        ]:
             if self.current_block:
                 if not self.current_block["content"]:
                     self.current_block["content"] = []
@@ -166,7 +197,9 @@ class BlockNoteHTMLParser(HTMLParser):
             for style_dict in self.style_stack:
                 combined_styles.update(style_dict)
 
-            inline_content = InlineContent(type="text", text=data, styles=combined_styles)
+            inline_content = InlineContent(
+                type="text", text=data, styles=combined_styles
+            )
             self.current_block["content"].append(inline_content)
 
     def _get_parent_list_tag(self) -> str:

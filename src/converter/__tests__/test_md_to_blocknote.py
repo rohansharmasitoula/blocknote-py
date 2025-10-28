@@ -1,6 +1,5 @@
 import pytest
 from blocknote.converter.md_to_blocknote import markdown_to_blocks
-from blocknote.schema import Block, InlineContent
 
 
 @pytest.fixture
@@ -105,7 +104,9 @@ def test_markdown_to_blocks_quote():
     assert len(blocks) == 1
     assert blocks[0].type == "quote"
     assert len(blocks[0].content) > 0
-    content_text = "".join([item.text for item in blocks[0].content if hasattr(item, "text")])
+    content_text = "".join(
+        [item.text for item in blocks[0].content if hasattr(item, "text")]
+    )
     assert "wise quote" in content_text
 
 

@@ -12,7 +12,9 @@ def sample_blocks():
             type="paragraph",
             content=[
                 InlineContent(type="text", text="Hello, "),
-                InlineContent(type="text", text="world!", styles={"bold": True}),
+                InlineContent(
+                    type="text", text="world!", styles={"bold": True}
+                ),
             ],
             children=[],
         )
@@ -81,7 +83,9 @@ def test_blocks_to_dict_empty_list():
 
 def test_blocks_to_dict_string_content():
     """Test conversion with string content."""
-    blocks = [Block(id="1", type="paragraph", content="Simple text", children=[])]
+    blocks = [
+        Block(id="1", type="paragraph", content="Simple text", children=[])
+    ]
     result = blocks_to_dict(blocks)
 
     assert len(result) == 1
@@ -166,6 +170,15 @@ def test_blocks_to_dict_roundtrip():
     assert result_dict[0]["id"] == original_dict[0]["id"]
     assert result_dict[0]["type"] == original_dict[0]["type"]
     assert len(result_dict[0]["content"]) == len(original_dict[0]["content"])
-    assert result_dict[0]["content"][0]["text"] == original_dict[0]["content"][0]["text"]
-    assert result_dict[0]["content"][1]["text"] == original_dict[0]["content"][1]["text"]
-    assert result_dict[0]["content"][1]["styles"] == original_dict[0]["content"][1]["styles"]
+    assert (
+        result_dict[0]["content"][0]["text"]
+        == original_dict[0]["content"][0]["text"]
+    )
+    assert (
+        result_dict[0]["content"][1]["text"]
+        == original_dict[0]["content"][1]["text"]
+    )
+    assert (
+        result_dict[0]["content"][1]["styles"]
+        == original_dict[0]["content"][1]["styles"]
+    )

@@ -13,3 +13,11 @@ __all__ = [
     "blocks_to_dict",
     "blocks_to_html",
 ]
+
+try:
+    from .blocknote_to_pdf import blocks_to_pdf, blocks_to_pdf_with_template
+except ImportError:
+    PDF_AVAILABLE = False
+else:
+    PDF_AVAILABLE = True
+    __all__ += ["blocks_to_pdf", "blocks_to_pdf_with_template"]

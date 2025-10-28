@@ -42,7 +42,10 @@ def markdown_to_blocks(markdown: str) -> List[Block]:
                     block = _parse_paragraph(tokens, i)
                     blocks.append(block)
                     i += 3
-                elif token.type == "bullet_list_open" or token.type == "ordered_list_open":
+                elif (
+                    token.type == "bullet_list_open"
+                    or token.type == "ordered_list_open"
+                ):
                     block, skip_count = _parse_list(tokens, i)
                     blocks.append(block)
                     i += skip_count
@@ -53,7 +56,9 @@ def markdown_to_blocks(markdown: str) -> List[Block]:
                 else:
                     i += 1
             except Exception as e:
-                raise ValueError(f"Failed to parse markdown token at position {i}: {e}")
+                raise ValueError(
+                    f"Failed to parse markdown token at position {i}: {e}"
+                )
 
         return blocks
 
@@ -77,7 +82,11 @@ def _parse_heading(tokens: List, start_idx: int) -> Block:
         content = []
 
     return Block(
-        id=str(uuid.uuid4()), type="heading", props={"level": level}, content=content, children=[]
+        id=str(uuid.uuid4()),
+        type="heading",
+        props={"level": level},
+        content=content,
+        children=[],
     )
 
 
@@ -93,7 +102,9 @@ def _parse_paragraph(tokens: List, start_idx: int) -> Block:
     else:
         content = []
 
-    return Block(id=str(uuid.uuid4()), type="paragraph", content=content, children=[])
+    return Block(
+        id=str(uuid.uuid4()), type="paragraph", content=content, children=[]
+    )
 
 
 def _parse_list(tokens: List, start_idx: int) -> Tuple[Block, int]:
@@ -104,9 +115,14 @@ def _parse_list(tokens: List, start_idx: int) -> Tuple[Block, int]:
         Tuple of (Block, number of tokens to skip)
     """
     list_type = (
-        "bulletListItem" if tokens[start_idx].type == "bullet_list_open" else "numberedListItem"
+        "bulletListItem"
+        if tokens[start_idx].type == "bullet_list_open"
+        else "numberedListItem"
     )
-    return Block(id=str(uuid.uuid4()), type=list_type, content=[], children=[]), 3
+    return (
+        Block(id=str(uuid.uuid4()), type=list_type, content=[], children=[]),
+        3,
+    )
 
 
 def _parse_quote(tokens: List, start_idx: int) -> Block:
@@ -125,7 +141,9 @@ def _parse_quote(tokens: List, start_idx: int) -> Block:
     else:
         content = []
 
-    return Block(id=str(uuid.uuid4()), type="quote", content=content, children=[])
+    return Block(
+        id=str(uuid.uuid4()), type="quote", content=content, children=[]
+    )
 
 
 def _parse_inline_content(children: List) -> List[InlineContent]:
@@ -148,22 +166,36 @@ def _parse_inline_content(children: List) -> List[InlineContent]:
                 content.append(InlineContent(type="text", text=child.content))
                 i += 1
             elif child.type == "strong_open":
-                if i + 1 < len(children) and hasattr(children[i + 1], "content"):
+                if i + 1 < len(children) and hasattr(
+                    children[i + 1], "content"
+                ):
                     text = children[i + 1].content
-                    content.append(InlineContent(type="text", text=text, styles={"bold": True}))
+                    content.append(
+                        InlineContent(
+                            type="text", text=text, styles={"bold": True}
+                        )
+                    )
                     i += 3  # Skip strong_open, text, strong_close
                 else:
                     i += 1
             elif child.type == "em_open":
-                if i + 1 < len(children) and hasattr(children[i + 1], "content"):
+                if i + 1 < len(children) and hasattr(
+                    children[i + 1], "content"
+                ):
                     text = children[i + 1].content
-                    content.append(InlineContent(type="text", text=text, styles={"italic": True}))
+                    content.append(
+                        InlineContent(
+                            type="text", text=text, styles={"italic": True}
+                        )
+                    )
                     i += 3  # Skip em_open, text, em_close
                 else:
                     i += 1
             else:
                 if hasattr(child, "content") and child.content:
-                    content.append(InlineContent(type="text", text=child.content))
+                    content.append(
+                        InlineContent(type="text", text=child.content)
+                    )
                 i += 1
         else:
             i += 1

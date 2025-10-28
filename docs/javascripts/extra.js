@@ -45,7 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'BlockNote-py - Python Library for BlockNote.js' },
         { name: 'twitter:description', content: 'Convert BlockNote blocks to HTML, Markdown, and JSON with Python' },
-        { name: 'robots', content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' }
+        { name: 'robots', content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' },
+        {
+            name: 'keywords',
+            content: 'blocknote python, blocknote py, blocknote js python, blocknote converter, blocknote-py package, block note python library'
+        },
+        { property: 'og:site_name', content: 'BlockNote-py' }
     ];
 
     metaTags.forEach(tag => {
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const canonical = document.createElement('link');
     canonical.rel = 'canonical';
-    canonical.href = window.location.href;
+    canonical.href = window.location.origin + window.location.pathname;
     document.head.appendChild(canonical);
 
     const searchInput = document.querySelector('.md-search__input');

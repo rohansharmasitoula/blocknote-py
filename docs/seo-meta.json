@@ -1,0 +1,82 @@
+{
+    "site": {
+        "name": "BlockNote-py",
+        "title": "BlockNote-py - BlockNote Python Library",
+        "description": "Convert BlockNote.js blocks to HTML, Markdown, PDF & JSON with type-safe Pydantic models. Perfect for Django, FastAPI, Flask backends and headless CMS applications.",
+        "url": "https://rohansharmasitoula.github.io/blocknote-py/",
+        "image": "https://rohansharmasitoula.github.io/blocknote-py/assets/images/blocknote-py-social.png",
+        "author": "Rohan Sharma Sitoula",
+        "keywords": [
+            "blocknote",
+            "python",
+            "django",
+            "fastapi",
+            "flask",
+            "pydantic",
+            "html",
+            "markdown",
+            "pdf",
+            "json",
+            "rich-text",
+            "editor",
+            "cms",
+            "content-management",
+            "server-side-rendering",
+            "backend",
+            "api",
+            "headless-cms"
+        ]
+    },
+    "pages": {
+        "home": {
+            "title": "BlockNote-py - BlockNote Python Library",
+            "description": "The Python library for BlockNote.js. Convert blocks to HTML, Markdown, PDF & JSON with type-safe Pydantic models. Perfect for Django, FastAPI, Flask backends.",
+            "keywords": "blocknote python library, blocknotejs python, django blocknote, fastapi blocknote, flask blocknote, python rich text editor"
+        },
+        "getting-started": {
+            "title": "Getting Started with BlockNote-py - Installation & Quick Start",
+            "description": "Learn how to install and use BlockNote-py in your Python project. Step-by-step guide with examples for Django, FastAPI, and Flask applications.",
+            "keywords": "blocknote-py installation, python blocknote tutorial, django blocknote setup, fastapi blocknote guide"
+        },
+        "examples": {
+            "title": "BlockNote-py Examples - Real-world Usage Patterns",
+            "description": "Comprehensive examples showing how to use BlockNote-py with Django, FastAPI, Flask, and other Python frameworks. Convert blocks to HTML, Markdown, and PDF.",
+            "keywords": "blocknote-py examples, python blocknote code samples, django blocknote examples, fastapi blocknote tutorial"
+        },
+        "api": {
+            "title": "BlockNote-py API Reference - Complete Documentation",
+            "description": "Complete API reference for BlockNote-py. Detailed documentation of all classes, methods, and functions for converting BlockNote blocks.",
+            "keywords": "blocknote-py api, python blocknote reference, blocknote converter api, pydantic blocknote models"
+        }
+    },
+    "structured_data": {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "BlockNote-py",
+        "description": "Official Python library for BlockNote.js - Convert blocks to HTML, Markdown, PDF & JSON with type-safe Pydantic models",
+        "url": "https://rohansharmasitoula.github.io/blocknote-py/",
+        "downloadUrl": "https://pypi.org/project/blocknote-py/",
+        "author": {
+            "@type": "Person",
+            "name": "Rohan Sharma Sitoula",
+            "email": "rohansharmasitoula@gmail.com"
+        },
+        "programmingLanguage": "Python",
+        "operatingSystem": "Cross-platform",
+        "applicationCategory": "DeveloperApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/rohansharmasitoula/blocknote-py",
+        "softwareVersion": "0.2.0",
+        "releaseNotes": "https://rohansharmasitoula.github.io/blocknote-py/changelog/",
+        "supportingData": {
+            "@type": "DataDownload",
+            "name": "BlockNote-py Documentation",
+            "url": "https://rohansharmasitoula.github.io/blocknote-py/"
+        }
+    }
+}

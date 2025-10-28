@@ -17,7 +17,14 @@ def blocks_to_html(blocks: List[Block]) -> str:
         TypeError: If input is not a list or contains non-Block objects
 
     Example:
-        >>> blocks = [Block(id="1", type="heading", props={"level": 1}, content=[InlineContent(type="text", text="Title")])]
+        >>> blocks = [
+        ...     Block(
+        ...         id="1",
+        ...         type="heading",
+        ...         props={"level": 1},
+        ...         content=[InlineContent(type="text", text="Title")],
+        ...     )
+        ... ]
         >>> blocks_to_html(blocks)
         '<h1>Title</h1>'
     """
@@ -32,13 +39,18 @@ def blocks_to_html(blocks: List[Block]) -> str:
     for i, block in enumerate(blocks):
         try:
             if not isinstance(block, Block):
-                raise TypeError(f"Item at index {i} must be a Block object, got {type(block)}")
+                raise TypeError(
+                    f"Item at index {i} must be a Block object, "
+                    f"got {type(block)}"
+                )
 
             html_element = _convert_block_to_html(block)
             if html_element:
                 html_elements.append(html_element)
         except Exception as e:
-            raise ValueError(f"Failed to convert block at index {i} to HTML: {e}")
+            raise ValueError(
+                f"Failed to convert block at index {i} to HTML: {e}"
+            )
 
     return "\n".join(html_elements)
 
@@ -88,7 +100,10 @@ def _convert_block_to_html(block: Block) -> str:
     elif block_type == "checkListItem":
         checked = block.props.get("checked", False)
         checkbox_state = "checked" if checked else ""
-        return f'<div><input type="checkbox" {checkbox_state} disabled> {content}</div>'
+        return (
+            "<div><input type=\"checkbox\" "
+            f"{checkbox_state} disabled> {content}</div>"
+        )
 
     elif block_type == "quote":
         return f"<blockquote>{content}</blockquote>"
@@ -130,7 +145,12 @@ def _extract_content_html(content) -> str:
 
                 if "backgroundColor" in item.styles:
                     bg_color = item.styles["backgroundColor"]
-                    text = f'<span style="background-color: {bg_color}">{text}</span>'
+                    text = (
+                        '<span style="background-color: {}">{}</span>'.format(
+                            bg_color,
+                            text,
+                        )
+                    )
 
                 if "textColor" in item.styles:
                     color = item.styles["textColor"]

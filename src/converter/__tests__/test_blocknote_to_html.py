@@ -52,13 +52,17 @@ def list_blocks():
                 Block(
                     id="2.1",
                     type="paragraph",
-                    content=[InlineContent(type="text", text="First numbered")],
+                    content=[
+                        InlineContent(type="text", text="First numbered")
+                    ],
                     children=[],
                 ),
                 Block(
                     id="2.2",
                     type="paragraph",
-                    content=[InlineContent(type="text", text="Second numbered")],
+                    content=[
+                        InlineContent(type="text", text="Second numbered")
+                    ],
                     children=[],
                 ),
             ],
@@ -74,9 +78,13 @@ def styled_blocks():
             id="1",
             type="paragraph",
             content=[
-                InlineContent(type="text", text="Bold text", styles={"bold": True}),
+                InlineContent(
+                    type="text", text="Bold text", styles={"bold": True}
+                ),
                 InlineContent(type="text", text=" and "),
-                InlineContent(type="text", text="italic text", styles={"italic": True}),
+                InlineContent(
+                    type="text", text="italic text", styles={"italic": True}
+                ),
             ],
             children=[],
         ),
@@ -111,13 +119,23 @@ def test_blocks_to_html_empty_list():
 def test_blocks_to_html_lists(list_blocks):
     """Test conversion of list blocks."""
     html = blocks_to_html(list_blocks)
-    expected = "<ul><li>First item</li><li>Second item</li></ul>\n<ol><li>First numbered</li><li>Second numbered</li></ol>"
+    expected = (
+        "<ul><li>First item</li><li>Second item</li></ul>\n"
+        "<ol><li>First numbered</li><li>Second numbered</li></ol>"
+    )
     assert html == expected
 
 
 def test_blocks_to_html_string_content():
     """Test conversion with string content instead of InlineContent list."""
-    blocks = [Block(id="1", type="paragraph", content="Simple text content", children=[])]
+    blocks = [
+        Block(
+            id="1",
+            type="paragraph",
+            content="Simple text content",
+            children=[],
+        )
+    ]
     html = blocks_to_html(blocks)
     assert html == "<p>Simple text content</p>"
 
@@ -178,7 +196,11 @@ def test_blocks_to_html_invalid_heading_level():
 def test_blocks_to_html_styled_content(styled_blocks):
     """Test conversion of blocks with styled content."""
     html = blocks_to_html(styled_blocks)
-    expected = '<p><strong>Bold text</strong> and <em>italic text</em></p>\n<p><span style="color: red"><span style="background-color: yellow">Colored text</span></span></p>'
+    expected = (
+        '<p><strong>Bold text</strong> and <em>italic text</em></p>\n'
+        '<p><span style="color: red"><span style="background-color: '
+        'yellow">Colored text</span></span></p>'
+    )
     assert html == expected
 
 
@@ -216,7 +238,10 @@ def test_blocks_to_html_checklist():
         ),
     ]
     html = blocks_to_html(blocks)
-    expected = '<div><input type="checkbox" checked disabled> Completed task</div>\n<div><input type="checkbox"  disabled> Incomplete task</div>'
+    expected = (
+        '<div><input type="checkbox" checked disabled> Completed task</div>\n'
+        '<div><input type="checkbox"  disabled> Incomplete task</div>'
+    )
     assert html == expected
 
 
@@ -226,7 +251,11 @@ def test_blocks_to_html_html_escaping():
         Block(
             id="1",
             type="paragraph",
-            content=[InlineContent(type="text", text="<script>alert('xss')</script>")],
+            content=[
+                InlineContent(
+                    type="text", text="<script>alert('xss')</script>"
+                )
+            ],
             children=[],
         )
     ]

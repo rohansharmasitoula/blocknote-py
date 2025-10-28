@@ -1,42 +1,65 @@
 [project]
 name = "blocknote-py"
 version = "0.2.0"
-description = "BlockNote Python library - Official Python support for BlockNote.js. Convert BlockNote blocks to HTML, Markdown, and JSON with full type safety and validation."
+description = "🚀 BlockNote Python library - Convert BlockNote.js blocks to HTML, Markdown, PDF & JSON. Type-safe Pydantic models for Django, FastAPI, Flask backends. Rich text editor content processing made easy."
 authors = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
 maintainers = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = { file = "LICENSE" }
 keywords = [
-    "blocknote",
-    "blocknote-py",
-    "blocknote-python",
-    "block-note-python",
-    "python-blocknote",
-    "blocks",
-    "html",
-    "markdown",
-    "json",
-    "converter",
-    "rich-text",
+    # Core BlockNote terms
+    "blocknote", "blocknote-py", "blocknote-python", "blocknotejs", "block-note",
+    # Framework integration
+    "django", "fastapi", "flask", "pydantic", "python-backend",
+    # Content formats
+    "html", "markdown", "pdf", "json", "rich-text", "wysiwyg",
+    # Use cases
+    "text-editor", "content-management", "cms", "blog", "documentation",
+    "document-processing", "content-conversion", "markup-converter",
+    # Technical terms
+    "server-side-rendering", "api", "rest-api", "web-development",
+    "content-api", "headless-cms", "structured-content", "editor-backend"
 ]
 classifiers = [
+    # Development status
     "Development Status :: 4 - Beta",
+    # Audience
     "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    # Topics - more specific and comprehensive
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Text Processing :: Markup :: HTML",
     "Topic :: Text Processing :: Markup :: Markdown",
+    "Topic :: Text Processing :: Filters",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: Content Management System",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Documentation",
+    "Topic :: Communications :: Chat",
+    # Framework specific
+    "Framework :: Django",
+    "Framework :: FastAPI",
+    "Framework :: Flask",
+    "Framework :: Pydantic",
+    # Environment
+    "Environment :: Web Environment",
+    "Environment :: Console",
+    # Python versions
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    # License and OS
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    # Additional metadata
     "Typing :: Typed",
+    "Natural Language :: English",
 ]
 dependencies = [
     "pydantic>=2.0.0",
@@ -44,14 +67,23 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/rohansharmasitoula/blocknote-py"
+"Homepage" = "https://rohansharmasitoula.github.io/blocknote-py/"
 "Documentation" = "https://rohansharmasitoula.github.io/blocknote-py/"
 "Repository" = "https://github.com/rohansharmasitoula/blocknote-py"
+"Source Code" = "https://github.com/rohansharmasitoula/blocknote-py"
 "Bug Tracker" = "https://github.com/rohansharmasitoula/blocknote-py/issues"
+"Issues" = "https://github.com/rohansharmasitoula/blocknote-py/issues"
 "Changelog" = "https://rohansharmasitoula.github.io/blocknote-py/changelog/"
+"Examples" = "https://rohansharmasitoula.github.io/blocknote-py/examples/"
+"API Reference" = "https://rohansharmasitoula.github.io/blocknote-py/api/"
+"PyPI" = "https://pypi.org/project/blocknote-py/"
 "Funding" = "https://buymeacoffee.com/sitoularohansharma"
+"Download" = "https://pypi.org/project/blocknote-py/#files"
 
 [project.optional-dependencies]
+pdf = [
+    "weasyprint>=62.0",
+]
 test = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
@@ -69,7 +101,7 @@ docs = [
     "mkdocstrings[python]>=0.20.0",
 ]
 all = [
-    "blocknote-py[test,dev,docs]",
+    "blocknote-py[test,dev,docs,pdf]",
 ]
 
 [build-system]

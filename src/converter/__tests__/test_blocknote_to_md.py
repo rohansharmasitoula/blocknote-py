@@ -52,13 +52,17 @@ def list_blocks():
                 Block(
                     id="2.1",
                     type="paragraph",
-                    content=[InlineContent(type="text", text="First numbered")],
+                    content=[
+                        InlineContent(type="text", text="First numbered")
+                    ],
                     children=[],
                 ),
                 Block(
                     id="2.2",
                     type="paragraph",
-                    content=[InlineContent(type="text", text="Second numbered")],
+                    content=[
+                        InlineContent(type="text", text="Second numbered")
+                    ],
                     children=[],
                 ),
             ],
@@ -82,13 +86,22 @@ def test_blocks_to_markdown_empty_list():
 def test_blocks_to_markdown_lists(list_blocks):
     """Test conversion of list blocks."""
     markdown = blocks_to_markdown(list_blocks)
-    expected = "* First item\n* Second item\n\n1. First numbered\n2. Second numbered"
+    expected = (
+        "* First item\n* Second item\n\n1. First numbered\n2. Second numbered"
+    )
     assert markdown == expected
 
 
 def test_blocks_to_markdown_string_content():
     """Test conversion with string content instead of InlineContent list."""
-    blocks = [Block(id="1", type="paragraph", content="Simple text content", children=[])]
+    blocks = [
+        Block(
+            id="1",
+            type="paragraph",
+            content="Simple text content",
+            children=[],
+        )
+    ]
     markdown = blocks_to_markdown(blocks)
     assert markdown == "Simple text content"
 
