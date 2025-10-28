@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-10-29
+
+### Added
+- **BlockNote → PDF Converter**: New `blocks_to_pdf` and
+  `blocks_to_pdf_with_template` helpers that generate PDFs from BlockNote blocks
+  using WeasyPrint, plus tests covering inline styling, templates, and error
+  handling (`src/converter/blocknote_to_pdf.py`).
+
+### Changed
+- **SEO & Metadata Enhancements**: Updated README, documentation landing page,
+  and project metadata (PyPI keywords, MkDocs meta tags, structured data) to
+  improve discoverability for queries such as "blocknote python" and
+  "blocknote py".
+
 ## [0.2.0] - 2025-10-16
 
 ### Added

@@ -1,6 +1,6 @@
 [project]
 name = "blocknote-py"
-version = "0.2.0"
+version = "0.3.1"
 description = "🚀 BlockNote Python library - Convert BlockNote.js blocks to HTML, Markdown, PDF & JSON. Type-safe Pydantic models for Django, FastAPI, Flask backends. Rich text editor content processing made easy."
 authors = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
 maintainers = [{ name = "Rohan Sharma Sitoula", email = "rohansharmasitoula@gmail.com" }]
