@@ -5,7 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://rohansharmasitoula.github.io/blocknote-py/)
 [![CI](https://github.com/rohansharmasitoula/blocknote-py/workflows/CI/badge.svg)](https://github.com/rohansharmasitoula/blocknote-py/actions)
-[![Downloads](https://pepy.tech/badge/blocknote-py)](https://pepy.tech/project/blocknote-py)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/blocknote-py)](https://pypi.org/project/blocknote-py/)
 [![GitHub stars](https://img.shields.io/github/stars/rohansharmasitoula/blocknote-py)](https://github.com/rohansharmasitoula/blocknote-py)
 
